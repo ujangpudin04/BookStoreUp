@@ -165,8 +165,8 @@ func (h *handlerProduct) UpdateProduct(w http.ResponseWriter, r *http.Request) {
 
 	// get image filename
 	dataContex := r.Context().Value("dataFile")
-	// filename := dataContex.(string)
-	filepath := dataContex.(string)
+	filename := dataContex.(string)
+	// filepath := dataContex.(string)
 
 	var categoriesId []int
 	for _, r := range r.FormValue("categoryId") {
@@ -210,12 +210,8 @@ func (h *handlerProduct) UpdateProduct(w http.ResponseWriter, r *http.Request) {
 	product.Qty = request.Qty
 	product.Category = category
 
-	// if filename != "false" {
-	// 	product.Image = filename
-	// }
-
-	if filepath != "false" {
-		product.Image = filepath
+	if filename != "false" {
+		product.Image = filename
 	}
 
 	product, err = h.ProductRepository.UpdateProduct(product)
