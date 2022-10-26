@@ -6,6 +6,7 @@ import (
 	"nutech/database"
 	"nutech/pkg/mysql"
 	"nutech/routes"
+	"os"
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
@@ -37,8 +38,10 @@ func main() {
 	var AllowedOrigins = handlers.AllowedOrigins([]string{"*"})
 
 	// Modify 1 line this below code get port from env ...
-	var port = "5000"
-
+	// var port = "5000"
+	var port = os.Getenv("PORT")
 	fmt.Println("server running localhost:" + port)
+
+	// fmt.Println("server running localhost:" + port)
 	http.ListenAndServe(":"+port, handlers.CORS(AllowedHeaders, AllowedMethods, AllowedOrigins)(r))
 }
