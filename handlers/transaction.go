@@ -51,10 +51,10 @@ func (h *handlerTransaction) FindTransactions(w http.ResponseWriter, r *http.Req
 		responseTransaction = append(responseTransaction, convertResponseTransaction(t))
 	}
 
-	for i, t := range responseTransaction {
-		imagePath := os.Getenv("PATH_FILE") + t.Product.Image
-		responseTransaction[i].Product.Image = imagePath
-	}
+	// for i, t := range responseTransaction {
+	// 	imagePath := os.Getenv("PATH_FILE") + t.Product.Image
+	// 	responseTransaction[i].Product.Image = imagePath
+	// }
 
 	w.WriteHeader(http.StatusOK)
 	response := dto.SuccessResult{Code: http.StatusOK, Data: responseTransaction}
